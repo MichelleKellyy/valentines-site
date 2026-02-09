@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import confetti from 'canvas-confetti'
+import { useNavigate } from 'react-router-dom'
 
 function Landing() {
+  const navigate = useNavigate()
   const [opened, setOpened] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [sealBroken, setSealBroken] = useState(false)
@@ -14,6 +16,9 @@ function Landing() {
       origin: { y: 0.4, x: 0.5 },
       startVelocity: 35,
     })
+    setTimeout(() => {
+      navigate('/main')
+    }, 800)
   }
 
   useEffect(() => {
@@ -28,7 +33,6 @@ function Landing() {
     setNoPos({ x, y })
   }
 
-  /* 💖 Freeze heart positions so background never glitches */
   const hearts = useMemo(
     () =>
       [...Array(24)].map(() => ({
